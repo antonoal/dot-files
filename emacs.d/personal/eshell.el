@@ -4,10 +4,25 @@
 
 ;;; Code:
 
+
+;; Trying to fix ansi-term
 (defadvice ansi-term (after advise-ansi-term-coding-system)
   (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))
 (ad-activate 'ansi-term)
 
+(setq auto-revert-remote-files t)
+
+(add-hook 'term-mode-hook
+          (lambda ()
+            (toggle-truncate-lines)
+            (setq term-prompt-regexp "^.*❯❯❯ ")
+            (make-local-variable 'mouse-yank-at-point)
+            (setq mouse-yank-at-point t)
+            (make-local-variable 'transient-mark-mode)
+            (setq transient-mark-mode nil)
+            (setq yas-dont-activate t)))
+
+;; Eshell stuff
 (setenv "PATH"
         (concat
          "/usr/local/bin:/usr/local/sbin:"
