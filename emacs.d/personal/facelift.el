@@ -7,6 +7,8 @@
 ;;; loading additional packages
 (prelude-require-packages '(base16-theme smart-mode-line-powerline-theme highlight-indent-guides))
 
+(load-theme 'base16-ocean-dark)
+
 ;; Fonts
 (defvar aa/fixed-font-family
   (cond ((x-list-fonts "Inconsolata LGC")   "Inconsolata LGC")
@@ -20,10 +22,12 @@
 
 ;; Smart mode line
 (require 'smart-mode-line-powerline-theme)
-(load-theme 'base16-ocean-dark)
 (setq sml/theme 'powerline)
 (setq sml/shorten-directory t)
 (setq sml/shorten-modes t)
+
+;; Fixes the powerline's arrows on OSX
+(setq ns-use-srgb-colorspace nil)
 
 ;; Highlight indentation
 ;; (require 'highlight-indent-guides)
