@@ -1,0 +1,31 @@
+#+FILETAGS: :gtd:
+* Section1
+** subsection1
+
+* Section2
+** TODO Subsection-subtask 2
+** TODO Another todo subtask in 2
+
+
+* COMMENT Household
+** TODO project with active tasks
+*** TODO Inactive Task
+*** NEXT Active Task
+
+** Another project with active tasks
+*** TODO Active (scheduled) Task
+    SCHEDULED: <2016-03-30 Wed>
+*** TODO Inactive task
+
+** Stuck project
+*** DONE A complete task
+    CLOSED: [2016-03-29 Tue 11:43]
+*** Just a note
+
+** Another stuck project
+*** CANCELLED Cancelled task
+    CLOSED: [2016-03-29 Tue 11:44]
+    - State "CANCELLED"  from ""           [2016-03-29 Tue 11:44]
+
+** A project with a task on hold
+*** HOLD Task on hold
