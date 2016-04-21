@@ -13,8 +13,10 @@ alias mv='mv -i'
 alias tree='tree -C'
 alias j=jump
 alias clear='printf "\033c"'
+alias e='emacsclient -t'
+alias ec='emacsclient -c'
 
-set -gx SBT_OPTS "-XX:MaxPermSize=384M -Dhttps.proxySet=true -Dhttp.nonProxyHosts=dtnexus1 -Dhttps.proxyHost=primary-proxy.gslb.intranet.barcapint.com -Dhttps.proxyPort=8080 -Dhttps.proxyUser=antonova -Dhttps.proxyPassword=XXXXXX -Dhttp.proxySet=true -Dhttp.proxyHost=primary-proxy.gslb.intranet.barcapint.com -Dhttp.proxyPort=8080 -Dhttp.proxyUser=antonova -Dhttp.proxyPassword=XXXXXX"
+# set -gx SBT_OPTS "-XX:MaxPermSize=384M -Dhttps.proxySet=true -Dhttp.nonProxyHosts=dtnexus1 -Dhttps.proxyHost=primary-proxy.gslb.intranet.barcapint.com -Dhttps.proxyPort=8080 -Dhttps.proxyUser=antonova -Dhttps.proxyPassword=XXXXXX -Dhttp.proxySet=true -Dhttp.proxyHost=primary-proxy.gslb.intranet.barcapint.com -Dhttp.proxyPort=8080 -Dhttp.proxyUser=antonova -Dhttp.proxyPassword=XXXXXX"
 
 # Auto-launching ssh-agent
 setenv SSH_ENV $HOME/.ssh/environment
