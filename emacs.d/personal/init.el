@@ -38,7 +38,7 @@
 (setq tramp-default-method "ssh")
 
 ;;; loading additional packages
-(prelude-require-packages '(ensime neotree))
+(prelude-require-packages '(ensime neotree multiple-cursors))
 
 ;;; enabling global hook for scala files to run in ensime mode
 ;; (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
@@ -47,6 +47,15 @@
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
 (setq neo-smart-open)
+
+;; Multiple cursors
+(require 'multiple-cursors)
+;; (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+;; Note: If you want to insert a newline in multiple-cursors-mode, use C-j
+
 
 (provide 'init)
 ;;; init.el ends here
