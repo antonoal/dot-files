@@ -10,6 +10,10 @@
     (horizontal-scroll-bar-mode -1))
   (scroll-bar-mode -1))
 
+;; Newline character at the end of the line upon save
+(setq mode-require-final-newline nil)
+(setq require-final-newline nil)
+
 ;; (use-package fill
 ;;              :bind ("C-c T f" . auto-fill-mode)
 ;;              :init (add-hook 'org-mode-hook 'turn-on-auto-fill)
