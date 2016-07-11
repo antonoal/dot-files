@@ -7,11 +7,11 @@
 ;;Proxy
 ;(setq url-proxy-services
 ;   '(("no_proxy" . "^\\(localhost\\|10.*\\)")
-;     ("http" . "primary-proxy.gslb.intranet.barcapint.com:8080")
-;     ("https" . "primary-proxy.gslb.intranet.barcapint.com:8080")))
+;     ("http" . "proxy-url:8080")
+;     ("https" . "proxy-url:8080")))
 
 ;(setq url-http-proxy-basic-auth-storage
-;    (list (list "primary-proxy.gslb.intranet.barcapint.com:8080"
+;    (list (list "proxy-url:8080"
 ;                (cons "Input your LDAP UID !"
 ;                      (base64-encode-string "antonova:XXXXXXX")))))
 

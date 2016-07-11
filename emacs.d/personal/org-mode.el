@@ -143,7 +143,7 @@
                 (tags "minddump"
                       ((org-agenda-overriding-header "Mind Dump")
                        ))
-                (tags-todo "-SCHEDULED={.+}-DEADLINE={.+}/!NEXT"
+                (tags-todo "-SCHEDULED={.+}/!NEXT"
                            ((org-agenda-overriding-header "Next")
                             ))
                 ;; (tags-todo "/!NEXT"
