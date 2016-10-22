@@ -7,7 +7,9 @@
 ;;; loading additional packages
 (prelude-require-packages '(base16-theme smart-mode-line-powerline-theme highlight-indent-guides))
 
-(load-theme 'base16-ocean-dark)
+(load-theme 'base16-ocean)
+
+(setq org-image-actual-width '(600))
 
 ;; Fonts
 (defvar aa/fixed-font-family

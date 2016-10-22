@@ -42,15 +42,10 @@
 (setq tramp-default-method "ssh")
 
 ;;; loading additional packages
-(prelude-require-packages '(ensime neotree multiple-cursors))
+(prelude-require-packages '(ensime multiple-cursors))
 
 ;;; enabling global hook for scala files to run in ensime mode
 ;; (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
-
-;; Neotree
-(require 'neotree)
-(global-set-key [f8] 'neotree-toggle)
-(setq neo-smart-open)
 
 ;; Multiple cursors
 (require 'multiple-cursors)
