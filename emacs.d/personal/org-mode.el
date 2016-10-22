@@ -85,6 +85,7 @@
 (setq org-default-notes-file "~/Org/refile.org")
 (setq org-agenda-files (quote ("~/Org"
                                "~/Org/notes"
+                               "~/Org/gtd"
                                )))
 
 (setq org-todo-keywords
@@ -119,39 +120,63 @@
                "* TODO %?")
               ("n" "Note" entry (file "~/Org/refile.org")
                "* %?\n  CREATED: %u\n  %c\n")
-              ("m" "Mind Dump" entry (file "~/Org/refile.org")
-               "* %?   :minddump:\n  CREATED: %u\n  ")
               )))
 
-;; Compact the block agenda view
 (setq org-agenda-compact-blocks t)
-
-;; Agenda defaults to one day only
 (setq org-agenda-span 'day)
-
-;; Ignore deadline if scheduled
 (setq org-agenda-skip-deadline-prewarning-if-scheduled t)
-
-;; Hide leading stars
 (setq org-hide-leading-stars t)
+(setq org-agenda-skip-deadline-if-done t)
+
+;; Breadcrumbs example to display parent entry info
+;; Eg: gtd:         [ ACL ] TODO Get IR35 insurance                            :gtd::
+
+;; ("w" "Week Review"
+;;                ((tags-todo "+gtd/!TODO"
+;;                            ((org-agenda-overriding-header "Someday")
+;;                             (org-agenda-prefix-format '((agenda . " %i %-12:c%?-12t% s")
+;;                                                              (timeline . "  % s")
+;;                                                              (todo .
+;;                                                                    " %i %-12:c %(concat \"[ \"(org-format-outline-path (org-get-outline-path)) \" ]\") ")
+;;                                                              (tags .
+;;                                                                    " %i %-12:c %(concat \"[ \"(org-format-outline-path (org-get-outline-path)) \" ]\") ")
+;;                                                              (search . " %i %-12:c"))
+;;                                                       )
+;;                             (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled))))
+;;                 )
+;;                nil)
+
+;; Example of using a custom func to display an org entry level as an arrow
+;; Eg:   ──► TODO Catch up with Kharlamov                                        :gtd::
+
+;; (defun my-agenda-prefix ()
+;;   (format "%s" (my-agenda-indent-string (org-current-level))))
+
+;; (defun my-agenda-indent-string (level)
+;;   (if (= level 1)
+;;       ""
+;;     (let ((str ""))
+;;       (while (> level 2)
+;;         (setq level (1- level)
+;;               str (concat str "──")))
+;;       (concat str "►"))))
+
+;; (setq org-agenda-custom-commands
+;;       '(("c" "My TODOs"
+;;          ((tags-todo "mytag"
+;;                      ((org-agenda-prefix-format " %e %(my-agenda-prefix) ")
+;;                       (org-tags-match-list-sublevels t)))))))
 
 ;; Custom agenda command definitions
 (setq org-agenda-custom-commands
       (quote ((" " "Agenda"
                ((agenda ""
                         ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("HOLD")))))
-                (tags "minddump"
-                      ((org-agenda-overriding-header "Mind Dump")
-                       ))
-                (tags-todo "-SCHEDULED={.+}/!NEXT"
+                (tags-todo "+gtd/!NEXT"
                            ((org-agenda-overriding-header "Next")
+                            (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled))
                             ))
-                ;; (tags-todo "/!NEXT"
-                ;;            ((org-agenda-overriding-header "Next")
-                ;;             (org-tags-match-list-sublevels t)
-                ;;             (org-agenda-todo-ignore-scheduled t)
-                ;;             (org-agenda-todo-ignore-deadlines t)
-                ;;             ))
+                ;;FIXME: nonproj's gone - change to explicitely look for :projetc:
                 (tags "+gtd-nonproj"
                       ((org-agenda-overriding-header "Stuck Projects")
                        (org-agenda-skip-function 'aa/skip-non-stuck-projects)
@@ -160,8 +185,7 @@
                 (tags-todo "/!HOLD"
                            ((org-agenda-overriding-header "On Hold")
                             ))
-                (tags "-minddump+refile"
-
+                (tags "+refile"
                       ((org-agenda-overriding-header "Refile")
                        ))
                 (tags-todo "-gtd-refile/!"
@@ -170,11 +194,9 @@
                 )
                nil)
               ("w" "Week Review"
-               ((tags-todo "+gtd/!-NEXT-HOLD"
+               ((tags-todo "+gtd/!TODO"
                            ((org-agenda-overriding-header "Someday")
-                            (org-agenda-todo-ignore-scheduled t)
-                            (org-agenda-todo-ignore-deadlines t)
-                            ))
+                            (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled))))
                 )
                nil)
               )))
@@ -184,6 +206,15 @@
 (setq org-src-tab-acts-natively t)
 
 (load (expand-file-name "next-spec-day.el" prelude-personal-dir))
+
+;;; Mobile-org
+
+;; Set to the location of your Org files on your local system
+;; (setq org-directory "~/Org")
+;; ;; Set to the name of the file where new notes will be stored
+;; (setq org-mobile-inbox-for-pull "~/org/flagged.org")
+;; ;; Set to <your Dropbox root directory>/MobileOrg.
+;; (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
 
 (provide 'org-mode)
 ;;; org-mode.el ends here
