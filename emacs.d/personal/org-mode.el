@@ -8,11 +8,12 @@
   "This function returns true if the entry is considered a project.
    A project is defined to be:
    - does not have a keyword itself;
-   - having at least one todo entry, regardless of their state."
+   - having at least one todo entry, regardless of their state
+   - is tagged as :project:"
   (let ((has-subtask)
         (subtree-end (save-excursion (org-end-of-subtree t)))
-        (is-a-task (member (nth 2 (org-heading-components)) org-todo-keywords-1)
-                   ))
+        (is-a-task (member (nth 2 (org-heading-components)) org-todo-keywords-1))
+        (has-project-tag (member "project" (org-get-tags))))
     (save-excursion
       (forward-line 1)
       (while (and (not has-subtask)
@@ -20,7 +21,7 @@
                   (re-search-forward "^\*+ " subtree-end t))
         (when (member (org-get-todo-state) org-todo-keywords-1)
           (setq has-subtask t))))
-    (and (not is-a-task) has-subtask)
+    (and (not is-a-task) has-subtask has-project-tag)
     )
   )
 
@@ -91,6 +92,8 @@
 (setq org-todo-keywords
       (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
               (sequence "HOLD(h@/!)" "|" "CANCELLED(c@/!)"))))
+
+(add-to-list 'org-tags-exclude-from-inheritance (quote "project"))
 
 ;; (setq org-todo-keyword-faces
 ;;       (quote (;("TODO" :foreground "red" :weight bold)
