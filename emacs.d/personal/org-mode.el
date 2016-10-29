@@ -83,9 +83,9 @@
 (setq calendar-week-start-day 1)
 
 (setq org-directory "~/Org")
-(setq org-default-notes-file "~/Org/refile.org")
+(setq org-default-notes-file "~/Org/gtd/refile.org")
 (setq org-agenda-files (quote ("~/Org"
-                               "~/Org/notes"
+                               "~/Org/prog"
                                "~/Org/gtd"
                                )))
 
@@ -175,9 +175,9 @@
       (quote ((" " "Agenda"
                ((agenda ""
                         ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("HOLD")))))
-                (tags-todo "+gtd/!NEXT"
+                (tags-todo "+gtd-delegated/!NEXT"
                            ((org-agenda-overriding-header "Next")
-                            (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled))
+                            (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))
                             ))
                 ;;FIXME: nonproj's gone - change to explicitely look for :projetc:
                 (tags "+gtd-nonproj"
@@ -187,6 +187,9 @@
                        ))
                 (tags-todo "/!HOLD"
                            ((org-agenda-overriding-header "On Hold")
+                            ))
+                (tags-todo "+delegated"
+                           ((org-agenda-overriding-header "Delegated")
                             ))
                 (tags "+refile"
                       ((org-agenda-overriding-header "Refile")
