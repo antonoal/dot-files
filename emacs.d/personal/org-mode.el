@@ -179,7 +179,6 @@
                            ((org-agenda-overriding-header "Next")
                             (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))
                             ))
-                ;;FIXME: nonproj's gone - change to explicitely look for :projetc:
                 (tags "+gtd-nonproj"
                       ((org-agenda-overriding-header "Stuck Projects")
                        (org-agenda-skip-function 'aa/skip-non-stuck-projects)
@@ -200,9 +199,19 @@
                 )
                nil)
               ("w" "Week Review"
-               ((tags-todo "+gtd/!TODO"
+               ((agenda ""
+                        ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("HOLD")))
+                         (org-agenda-span 10)
+                         (org-agenda-start-on-weekday nil)
+                         (org-agenda-start-day "-3d")))
+                (tags-todo "+gtd/!TODO"
                            ((org-agenda-overriding-header "Someday")
                             (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled))))
+                (tags "+gtd-nonproj"
+                      ((org-agenda-overriding-header "Stuck Projects")
+                       (org-agenda-skip-function 'aa/skip-non-stuck-projects)
+                                        ; (org-tags-match-list-sublevels t)
+                       ))
                 )
                nil)
               )))
