@@ -93,7 +93,7 @@
       (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
               (sequence "HOLD(h@/!)" "|" "CANCELLED(c@/!)"))))
 
-(add-to-list 'org-tags-exclude-from-inheritance (quote "project"))
+(setq org-tags-exclude-from-inheritance (quote "project"))
 
 ;; (setq org-todo-keyword-faces
 ;;       (quote (;("TODO" :foreground "red" :weight bold)
@@ -119,9 +119,9 @@
 
 ;; Capture templates
 (setq org-capture-templates
-      (quote (("t" "Todo" entry (file "~/Org/refile.org")
+      (quote (("t" "Todo" entry (file "~/Org/gtd/refile.org")
                "* TODO %?")
-              ("n" "Note" entry (file "~/Org/refile.org")
+              ("n" "Note" entry (file "~/Org/gtd/refile.org")
                "* %?\n  CREATED: %u\n  %c\n")
               )))
 
@@ -203,7 +203,7 @@
                         ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo '("HOLD")))
                          (org-agenda-span 10)
                          (org-agenda-start-on-weekday nil)
-                         (org-agenda-start-day "-3d")))
+                         (org-agenda-start-day "-2d")))
                 (tags-todo "+gtd/!TODO"
                            ((org-agenda-overriding-header "Someday")
                             (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled))))
