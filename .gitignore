@@ -2,3 +2,5 @@
 *.elc
 custom.el
 untracked.el
+
+*.DS_Store
